@@ -17,4 +17,4 @@
 > Use your favorite static server! I use [serve](https://www.npmjs.com/package/serve)
 
 1. `$ cd intelligence && serve -s build`
-2. `$ cd cost && serve -s dist`
+2. `$ cd ../cost && serve -s dist`
