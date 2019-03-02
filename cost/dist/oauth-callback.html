@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    function loadHandler() {
+      if (opener) {
+        if (location.hash) {
+          opener.require("esri/kernel").id.setOAuthResponseHash(location.hash);
+          close();
+        }
+      }
+      else {
+        close();
+      }
+    }
+  </script>
+<meta name="theme-color" content="#0079c1" /><link rel="manifest" href="manifest.e46cce9855eef98e855f1e8a34854825.json" /></head>
+
+<body onload="loadHandler();">
+</body>
+
+</html>
