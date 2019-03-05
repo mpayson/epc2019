@@ -10,12 +10,17 @@ const poiRenderer = {
     type: "simple-marker",  // autocasts as new SimpleMarkerSymbol()
     style: "diamond",
     // color: [0, 171, 189],
-    color: "#40F99B" ,
+    // color: "#8AC927",
+    // color: "#B0DB43",
+    color: "40F99B",
+    // color: "#8AC926" ,
     // color: [106,255,0],
     // color: [0, 162, 180],
     size: "17px",  // pixels
     outline: {  // autocasts as new SimpleLineSymbol()
-      color: [ 0, 0, 0 ],
+      // color: [ 0, 0, 0 ],
+      // color: [0,128,79],
+      color: "#004D30",
       width: 1.5 // points
     }
   },

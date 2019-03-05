@@ -35,11 +35,11 @@ const sumStops = [
   // {"value":15,"color":[232,79,166,255],"label":"15"},
   // {"value":20,"color":[236,144,198,255],"label":null},
   // {"value":25,"color":[255,240,255,255],"label":"\u003e 25"}
-  {"value":25,"color":[214,193,215,255],"label":"\u003c 5"},
+  {"value":25,"color":[214,193,215,255],"label":"\u003c 25"},
   {"value":20,"color":[215,181,216,255],"label":null},
   {"value":15,"color":[223,101,176,255],"label":"15"},
   {"value":10,"color":[221,28,119,200],"label":null},
-  {"value":5,"color":[152,0,67,200],"label":"\u003e 25"}
+  {"value":5,"color":[152,0,67,200],"label":"\u003e 5"}
   // {"value":24,"color":[255,229,240,255],"label":"\u003c 24"},
   // {"value":16,"color":[215,181,216,255],"label":null},
   // {"value":12,"color":[223,101,176,255],"label":"12"},
