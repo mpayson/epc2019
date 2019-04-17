@@ -13,7 +13,7 @@ loadCss("https://jsdev.arcgis.com/4.11/esri/themes/dark/main.css");
 defaults.global.defaultFontColor = '#ffffff';
 defaults.global.legend = false;
 defaults.global.tooltips.enabled = false;
-// defaults.global.events = ['click', 'touchstart', 'touchend']
+defaults.global.events = ['click', 'touchstart', 'touchend'];
 // defaults.global.legend.fontColor = '#ffffff';
 
 ReactDOM.render(

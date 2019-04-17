@@ -1,19 +1,5 @@
 const getMonthFromTime = (time) => {
   switch(time) {
-    // case 1:
-    //   return "Feb 2018"
-    // case 2:
-    //   return "Mar 2018"
-    // case 3:
-    //   return "Apr 2018"
-    // case 4:
-    //   return "May 2018"
-    // case 5:
-    //   return "Jun 2018"
-    // case 6:
-    //   return "Jul 2018"
-    // case 7:
-    //   return "Aug 2018"
     case 0:
       return "Sep 2018"
     case 1:
@@ -30,21 +16,11 @@ const getMonthFromTime = (time) => {
 }
 
 const sumStops = [
-  // {"value":5,"color":[124,61,88,255],"label":"\u003c 5"},
-  // {"value":10,"color":[195,51,129,255],"label":null},
-  // {"value":15,"color":[232,79,166,255],"label":"15"},
-  // {"value":20,"color":[236,144,198,255],"label":null},
-  // {"value":25,"color":[255,240,255,255],"label":"\u003e 25"}
   {"value":25,"color":[214,193,215,255],"label":"\u003c 25"},
   {"value":20,"color":[215,181,216,255],"label":null},
   {"value":15,"color":[223,101,176,255],"label":"15"},
   {"value":10,"color":[221,28,119,200],"label":null},
   {"value":5,"color":[152,0,67,200],"label":"\u003e 5"}
-  // {"value":24,"color":[255,229,240,255],"label":"\u003c 24"},
-  // {"value":16,"color":[215,181,216,255],"label":null},
-  // {"value":12,"color":[223,101,176,255],"label":"12"},
-  // {"value":8,"color":[203,26,109,255],"label":null},
-  // {"value":4,"color":[113,18,60,255],"label":"\u003e 4"}
 ]
 
 const getTimeOpcStops = (v, gap) => {
@@ -93,8 +69,7 @@ const getBlockCountRenderer = (time=12) => {
   return defaultRenderer;
 }
 
-// IIf( condition, trueValue, falseValue ) 
-const getBlockDenseRenderer = (mapView) => {
+const getBlockDenseRenderer = (mapView, selected=null) => {
   return {
     type: "dot-density",
     referenceDotValue: 35,
@@ -104,29 +79,22 @@ const getBlockDenseRenderer = (mapView) => {
       unit: "visits"
     },
     attributes: [{
-      // field: "THHGRPL13",
       valueExpression: '100 * IIf($feature.TLIFENAME == "Next Wave", $feature.count_, 0)',
       label: "Next Wave",
-      color: "#E3458F" //dark pink
+      color: (selected && selected !== "Next Wave") ? [227, 69, 143, 0.2] : [227, 69, 143, 1] //dark pink
     }, {
-      // field: "THHGRPL2",
       valueExpression: '100 * IIf($feature.TLIFENAME == "Upscale Avenues", $feature.count_, 0)',
       label: "Upscale Avenues",
-      color: "#C04CFD" // purple
+      color: (selected && selected !== "Upscale Avenues") ? [192, 76, 253, 0.2] : [192, 76, 253, 1] // dark purple
       // color: "#5E2BFF" // dark blue
     }, {
-      // field: "THHGRPL7",
       valueExpression: '100 * IIf($feature.TLIFENAME == "Ethnic Enclaves", $feature.count_, 0)',
       label: "Ethnic Enclaves",
-      color: "#EF8354" //orange
+      color: (selected && selected !== "Ethnic Enclaves") ? [239, 131, 84, 0.2] : [239, 131, 84, 1]
     }, {
-      // field: "THHGRPL11",
-      // valueExpression: '100 * IIf($feature.TLIFENAME == "Midtown Singles", $feature.count_, 0)',
-      // label: "Midtown Singles",
       valueExpression: '100 * IIf(IndexOf(["Upscale Avenues", "Ethnic Enclaves", "Next Wave"], $feature.TLIFENAME) < 0, $feature.count_, 0)',
       label: "Other",
-      // color: "#40F99B" // green
-      color: "#5E2BFF" // dark blue
+      color: (selected && selected !== "Other") ? [94, 43, 255, 0.2] : [94, 43, 255, 1]
     }]
   }
 }
@@ -163,7 +131,6 @@ const getBlockHlEffect = (highlight=null) => {
     },
     insideEffect: "contrast(1.5)",
     outsideEffect: "grayscale(0.5) opacity(60%) contrast(30%)"
-    // outsideEffect: "contrast(10%) grayscale(0.8) opacity(1%)"
   }
 }
 

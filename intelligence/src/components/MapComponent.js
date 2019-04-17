@@ -3,7 +3,7 @@ import { loadModules } from 'esri-loader';
 import { loaderOptions, poiRenderer, highlightOptions } from '../config';
 import { getBlockCountRenderer, getTimeFilter, getBlockDenseRenderer,
         getBlockHlFilter, getBlockHlEffect, getBlockTimeHlFilter,
-      hideFilter } from './common'
+      } from './common'
 
 class MapComponent extends PureComponent {
 
@@ -42,14 +42,10 @@ class MapComponent extends PureComponent {
         this.view.popup.actions = [];
 
         this.blockLyr = new FeatureLayer({
-          // url: "https://services.arcgis.com/q7zPNeKmTWeh7Aor/arcgis/rest/services/sg_ca_walmart_block_enriched_all_simp/FeatureServer/",
           url: "https://services.arcgis.com/q7zPNeKmTWeh7Aor/arcgis/rest/services/sg_ca_top_block_long_enriched_simp/FeatureServer",
           renderer: getBlockCountRenderer(),
-          // outFields: ["safegraph_place_id", "count_", "time"],
           outFields: ["safegraph_place_id", "count_", "time"]
         });
-
-        
 
         this.poiLyr = new FeatureLayer({
           url: "https://services.arcgis.com/q7zPNeKmTWeh7Aor/arcgis/rest/services/a07272/FeatureServer",
@@ -57,7 +53,7 @@ class MapComponent extends PureComponent {
           renderer: poiRenderer
         })
         this.map.addMany([this.blockLyr, this.poiLyr]);
-
+        
         const legend = new Legend({
           view: this.view,
           layerInfos: [{
@@ -68,7 +64,6 @@ class MapComponent extends PureComponent {
             title: "Stores"
           }],
           style: {
-            // type: "card",
             layout: "stack"
           }
         })
@@ -86,6 +81,8 @@ class MapComponent extends PureComponent {
               layer: this.blockDenseLyr,
               title: "Census Blocks"
             })
+            console.log(JSON.stringify(this.poiLyr.renderer.toJSON()));
+            console.log(JSON.stringify(this.blockLyr.renderer.toJSON()));
             return this.view.whenLayerView(this.blockDenseLyr);
           })
           .catch(er => console.log(er));

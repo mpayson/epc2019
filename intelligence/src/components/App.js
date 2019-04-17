@@ -1,23 +1,9 @@
 import React, {Component} from 'react';
 import MapComponent from './MapComponent';
 import QuestionHeader from './QuestionHeader';
-import { CalciteH1, CalciteH4 } from 'calcite-react/Elements';
-import styled, { css } from 'styled-components';
 import LiveAreas from './steps/LiveAreas';
 import Demographic from './steps/Demographic';
 import './question.css';
-
-const BigH1 = styled(CalciteH1)`
-  font-size: 3.99758rem;
-  line-height: 3.875rem;
-  margin: 1rem;
-  font-weight: bold;
-  color: white;
-
-`;
-const Comph4 = styled(CalciteH4)`
-  margin: 0.5rem
-`;
 
 const initState = [true, false, false];
 
@@ -83,7 +69,7 @@ class App extends Component{
     const isActive = this.state.active[i];
     return (<QuestionHeader
       title={v}
-      onClick={_=>this.onListItemClick(i)}
+      onClick={_=>this.onListItemClick(i)} // not good pattern
       active={isActive}
       index={i}
     />)
@@ -121,6 +107,7 @@ class App extends Component{
           <Demographic
             lyr={this.blockLyr}
             lyrView={this.blockLyrView}
+            mapView={this.mapView}
             time={this.state.time / 4}
             poi={this.state.selPoi}
           />
@@ -128,21 +115,6 @@ class App extends Component{
       </>
     )
   }
-
-  // getStepThree(){
-  //   let header = this.getQuestionHeader('Cost', 2);
-  //   if(!this.state.active[2]){
-  //     return header;
-  //   }
-  //   return (
-  //     <>
-  //       {header}
-  //       <div className="question-content">
-  //         <BigH1>$126/mo</BigH1>
-  //       </div>
-  //     </>
-  //   )
-  // }
 
   render(){
     return(

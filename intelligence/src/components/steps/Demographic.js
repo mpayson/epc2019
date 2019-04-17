@@ -4,7 +4,9 @@ import { CalciteH4 } from 'calcite-react/Elements';
 import Button from 'calcite-react/Button';
 import styled, { css } from 'styled-components';
 import GraphBarIcon from 'calcite-ui-icons-react/GraphBarIcon';
+import {getBlockDenseRenderer} from '../common';
 
+const labels = ['Next Wave', 'Upscale Avenues', 'Ethnic Enclaves', 'Other'];
 
 const InfText = styled(CalciteH4)`
   color: white;
@@ -51,24 +53,18 @@ const getQuery = (time, poi=null) => {
   }
 }
 
-// const getInitQuery = () => {
-//   return {
-//     where: `safegraph_place_id = 'sum'`,
-//     groupByFieldsForStatistics: 'TLIFENAME',
-//     outStatistics: statQuery
-//   }
-// }
-
 
 class Demographic extends PureComponent {
   constructor(props){
     super(props);
     this.lyr = props.lyr;
     this.lyrView = props.lyrView;
-
+    this.mapView = props.mapView;
     this.state = {
-      data: []
+      data: [],
+      selIndex: null,
     }
+    this._onBarClick = this._onBarClick.bind(this);
   }
 
   _getChartData(res){
@@ -106,16 +102,6 @@ class Demographic extends PureComponent {
       vs['O']
     ])
 
-
-    // console.log(res);
-    // const total = res.features[0].attributes["countsum"];
-    // const vs = fields.map(f => {
-    //   const atr = `${f}_wt_sum`;
-    //   // return res.features[0].attributes[atr] / total;
-    //   return res.features[0].attributes[atr];
-    // });
-    // const total = vs.reduce((acc, a) => acc + a); 
-    // return vs.map(v => v/total);
   }
 
 
@@ -137,6 +123,17 @@ class Demographic extends PureComponent {
   componentDidUpdate(prevProps, prevState){
     if(prevProps.poi !== this.props.poi || prevProps.time !== this.props.time){
       this._updateChart()
+    }
+  }
+
+  _onBarClick(elems){
+    if(elems.length > 0){
+      const l = labels[elems[0]._index];
+      this.lyr.renderer = getBlockDenseRenderer(this.mapView, l);
+      this.setState({selIndex: elems[0]._index});
+    } else {
+      this.lyr.renderer = getBlockDenseRenderer(this.mapView);
+      this.setState({selIndex: null});
     }
   }
 
@@ -166,19 +163,26 @@ class Demographic extends PureComponent {
   }
 
   render(){
+
+    let backgroundColor = [
+      "rgba(227,69,143, 0.7)",
+      "rgba(192,76,253, 0.7)",
+      "rgba(239,131,85, 0.7)",
+      "rgba(94, 43, 255, 0.7)",
+    ]
+    // if(this.state.selIndex !== null){
+    //   backgroundColor = backgroundColor.map((b,i) => 
+    //     i === this.state.selIndex ? b : b.replace('0.7', '0.2')
+    //   )
+    // }
+
     const data = {
-      labels: ['Next Wave', 'Upscale Avenues', 'Ethnic Enclaves', 'Other'],
+      labels,
       datasets: [{
         label: "Pattern",
         fill: false,
         data: this.state.data,
-        backgroundColor: [
-          "rgba(227,69,143, 0.7)",
-          "rgba(192,76,253, 0.7)",
-          "rgba(239,131,85, 0.7)",
-          "#5E2BFF"
-          // "rgba(64,249,155, 0.7)"
-        ]
+        backgroundColor
       }]
     }
 
