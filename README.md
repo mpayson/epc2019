@@ -8,10 +8,10 @@
 3. `$ cd ../cost && npm install`
 
 ## Building
-> Note, I'm committing pushing built files as well for convenience, so you could skip to [running](#running)
+> Note, I'm committing built files as well for convenience, so you could skip to [running](#running)
 
 1. `$ cd intelligence && npm run build`
-2. `$ cd ../cost && npm install`
+2. `$ cd ../cost && npm run build`
 
 ## Running
 > Use your favorite static server! I use [serve](https://www.npmjs.com/package/serve)
