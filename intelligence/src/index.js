@@ -7,7 +7,7 @@ import { defaults } from 'react-chartjs-2';
 import { loadCss } from 'esri-loader';
 import './index.css';
 
-loadCss("https://jsdev.arcgis.com/4.11/esri/themes/dark/main.css");
+loadCss("https://jsdev.arcgis.com/4.12/esri/themes/dark/main.css");
 
 
 defaults.global.defaultFontColor = '#ffffff';

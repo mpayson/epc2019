@@ -1,7 +1,7 @@
 
 
 const loaderOptions = {
-  url: 'https://jsdev.arcgis.com/4.11/'
+  url: 'https://jsdev.arcgis.com/4.12/'
 }
 
 const poiRenderer = {
